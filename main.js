@@ -33,3 +33,18 @@ sayMyNameObj.onclick = function () {
     }
     getDayName();
 };
+
+//lets ad ddynamic heading here
+
+// let newHeading=document.createAttribute("h2");
+// newHeading.innerHTML="I am the new dynamic heading :)";
+// exampleObj.insertAdjacentElement("beforebgin",newHeading)
+
+
+
+//add dynamic input field
+
+var input = document.createElement("input");
+input.type="text";
+input.className="testClass";
+document.body.appendChild(input);
