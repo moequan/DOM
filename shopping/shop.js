@@ -17,134 +17,146 @@
 
 //after doing all the step except the sum then we can add the basket array 
 
-   
-   let basket = [];
-   //textbox object
-   let giftObj = document.getElementById("gift");
-   console.log(giftObj.value);
-   //add gift button click
-   let addGiftObj = document.getElementById('addGift');
-   //für enter statt add to basket
-   giftObj.addEventListener("keyup", function (e) {
-       e.preventDefault();                                             //?????????????????????        ​
-       if (e.keyCode === 13) {
-           addGiftObj.onclick();
-       }
-   });
-   let totalSumShow = document.createElement('div');
-   let message = document.createElement('div');
-   addGiftObj.onclick = () => {
-       console.log('addGift button clicked...');
-       //Task 1
-       if (giftObj.value.length < 3) {
-           // alert('Type in at least 3 characters');
-          
-           message.innerHTML = "Type in at least 3 characters";
-           giftObj.insertAdjacentElement("beforebegin", message).style.color = "red";
-           return;
-       }
-       if (giftObj.value.length >= 3) {
-           // alert('Type in at least 3 characters');
-           message.remove()
-       }
-       
-       //add item name and price to the basket array
-       let price = 5 + Math.floor(Math.random() * 95);
-       console.log(`The price is ${price}`);
-       basket.push({
-           name: giftObj.value,
-           price: price
-       });
-       console.log(basket);                                        //mit `The basket is ${basket}` funktioniert es nicht
-       //we can also store this way but it will not more clear
-       //basket.push([giftObj.value, price]);
-       //add element
-       let shoppingObj = document.getElementById('shoppingList');
-       let newGiftObj = document.createElement('li');
-       // newGiftObj.innerHTML = giftObj.value;                    brauchen wir jetzt nicht mehr, da nächste Zeile
-       //Task 2: Show price near by item name
-       newGiftObj.insertAdjacentHTML('beforeend', `<span>${giftObj.value}</span> , <span> price: ${price}</span>`)
-       shoppingObj.appendChild(newGiftObj);
-       //after adding, clear the textbox
-       giftObj.value = '';
-       let totalSum = basket.reduce((total, currentValue) => {
-           total += currentValue.price;
-           return total;
-       }, 0);
-       
-       // let totalSumShow = document.createElement('div');               hier darf es nicht stehen, da es bei jedem Mal ein neues div erstellt; also vor der Funktion onclick oben
-       totalSumShow.innerHTML = `The total price for ${basket.length} items is ${totalSum}`;
-       shoppingObj.insertAdjacentElement("afterend", totalSumShow);
-   }
-   //remove last gift button click
-   let removeLastGiftObj = document.getElementById('removeLastGift');
-   removeLastGiftObj.onclick = () => {
-       console.log("removeLastGiftObj...");
-       let allGiftObj = document.querySelectorAll('#shoppingList > li');
-       console.log(allGiftObj);
-       console.log(allGiftObj[allGiftObj.length - 1]);
-       allGiftObj[allGiftObj.length - 1].remove();
-       //we have to also remove last item from the basket array
-       basket.pop();
-       console.log(basket);
-   }
-   //remove first gift button click
-   let removeFirstGiftObj = document.getElementById('removeFirstGift');
-   removeFirstGiftObj.onclick = () => {
-       console.log('removeFirstGift...');
-       let allGiftObj = document.querySelectorAll('#shoppingList > li');
-       allGiftObj[0].remove();
-       //we have to also remove first item from the basket array
-       basket.shift();
-       console.log(basket);
-   }
-   //remove a particular item from the basket
-   let removeObj = document.getElementById('remove');
-   removeObj.onclick = () => {
-       console.log('remove...');
-       let allGiftObj = document.querySelectorAll('#shoppingList > li');
-       let textboxGiftObj = document.getElementById('gift');
-       console.log(`Item entered in the textbox ==> ${textboxGiftObj.value}`);
-       let notFound = true;
-       for (let i = 0; i < allGiftObj.length; i++) {
-           // let deleteGift = allGiftObj[i].innerHTML;                    brauchen wir jetzt nicht mehr, da Task 2
-           //Task 2: case 1
-           // let deleteGift = allGiftObj[i].firstChild.innerText;         ????????????????
-           //Task 2: case 1
-           let deleteGift = allGiftObj[i].getElementsByTagName('SPAN')[0].innerHTML;       //[0]?????? wozu braucht man noch innerHTML??????
-           console.log(`Item from the list ==> ${deleteGift}`);
-           if (textboxGiftObj.value.trim().toLowerCase() === deleteGift.trim().toLocaleLowerCase()) {
-               allGiftObj[i].remove();
-               textboxGiftObj.value = '';
-               notFound = false;
-               //remove particular item from the basket array which we have entered in the textbox
-               basket.splice(i, 1);
-               console.log(basket);
-               break;
-           }
-       }
-       if (notFound)
-           alert(`Gift ${textboxGiftObj.value} not found!`);
-   }
-   //sum of the all item price
-   let shoppingObj = document.getElementById('shoppingList');
-   let sumObj = document.getElementById('sum');
-   sumObj.onclick = () => {
-       console.log('Sum ...');
-       let totalSum = basket.reduce((total, currentValue) => {
-           total += currentValue.price;
-           return total;
-       }, 0);
-      
-       totalSumShow.innerHTML = `The total price for ${basket.length} items is ${totalSum}`;
-       shoppingObj.insertAdjacentElement("afterend", totalSumShow);
-       // alert(`Total sum: ${totalSum}`);
-   }
- 
-   
-   
-   
-   
+
+let basket = [];
+//textbox object
+let giftObj = document.getElementById("gift");
+console.log(giftObj.value);
+//add gift button click
+let addGiftObj = document.getElementById('addGift');
+//für enter statt add to basket
+giftObj.addEventListener("keyup", function (e) {
+    e.preventDefault(); //?????????????????????        ​
+    if (e.keyCode === 13) {
+        addGiftObj.onclick();
+    }
+});
+let totalSumShow = document.createElement('div');
+let message = document.createElement('div');
+addGiftObj.onclick = () => {
+    console.log('addGift button clicked...');
+    //Task 1
+    if (giftObj.value.length < 3) {
+        // alert('Type in at least 3 characters');
+
+        message.innerHTML = "Type in at least 3 characters";
+        giftObj.insertAdjacentElement("beforebegin", message).style.color = "red";
+        return;
+    }
+    if (giftObj.value.length >= 3) {
+        // alert('Type in at least 3 characters');
+        message.remove()
+    }
+
+    //add item name and price to the basket array
+    let price = 5 + Math.floor(Math.random() * 95);
+    console.log(`The price is ${price}`);
+    basket.push({
+        name: giftObj.value,
+        price: price
+    });
+    console.log(basket); //mit `The basket is ${basket}` funktioniert es nicht
+    //we can also store this way but it will not more clear
+    //basket.push([giftObj.value, price]);
+    //add element
+    let shoppingObj = document.getElementById('shoppingList');
+    let newGiftObj = document.createElement('li');
+    // newGiftObj.innerHTML = giftObj.value;                    brauchen wir jetzt nicht mehr, da nächste Zeile
+    //Task 2: Show price near by item name
+    newGiftObj.insertAdjacentHTML('beforeend', `<span>${giftObj.value}</span> , <span> price: ${price}</span>`)
+    shoppingObj.appendChild(newGiftObj);
+    //after adding, clear the textbox
+    giftObj.value = '';
+    let totalSum = basket.reduce((total, currentValue) => {
+        total += currentValue.price;
+        return total;
+    }, 0);
+
+    // let totalSumShow = document.createElement('div');               hier darf es nicht stehen, da es bei jedem Mal ein neues div erstellt; also vor der Funktion onclick oben
+    totalSumShow.innerHTML = `The total price for ${basket.length} items is ${totalSum}`;
+    shoppingObj.insertAdjacentElement("afterend", totalSumShow);
+}
+//remove last gift button click
+let removeLastGiftObj = document.getElementById('removeLastGift');
+removeLastGiftObj.onclick = () => {
+    console.log("removeLastGiftObj...");
+    let allGiftObj = document.querySelectorAll('#shoppingList > li');
+    console.log(allGiftObj);
+    console.log(allGiftObj[allGiftObj.length - 1]);
+    allGiftObj[allGiftObj.length - 1].remove();
+    //we have to also remove last item from the basket array
+    basket.pop();
+    console.log(basket);
+}
+//remove first gift button click
+let removeFirstGiftObj = document.getElementById('removeFirstGift');
+removeFirstGiftObj.onclick = () => {
+    console.log('removeFirstGift...');
+    let allGiftObj = document.querySelectorAll('#shoppingList > li');
+    allGiftObj[0].remove();
+    //we have to also remove first item from the basket array
+    basket.shift();
+    console.log(basket);
+}
+//remove a particular item from the basket
+let removeObj = document.getElementById('remove');
+removeObj.onclick = () => {
+    console.log('remove...');
+    let allGiftObj = document.querySelectorAll('#shoppingList > li');
+    let textboxGiftObj = document.getElementById('gift');
+    console.log(`Item entered in the textbox ==> ${textboxGiftObj.value}`);
+    let notFound = true;
+    for (let i = 0; i < allGiftObj.length; i++) {
+        // let deleteGift = allGiftObj[i].innerHTML;                    brauchen wir jetzt nicht mehr, da Task 2
+        //Task 2: case 1
+        // let deleteGift = allGiftObj[i].firstChild.innerText;         ????????????????
+        //Task 2: case 1
+        let deleteGift = allGiftObj[i].getElementsByTagName('SPAN')[0].innerHTML; //[0]?????? wozu braucht man noch innerHTML??????
+        console.log(`Item from the list ==> ${deleteGift}`);
+        if (textboxGiftObj.value.trim().toLowerCase() === deleteGift.trim().toLocaleLowerCase()) {
+            allGiftObj[i].remove();
+            textboxGiftObj.value = '';
+            notFound = false;
+            //remove particular item from the basket array which we have entered in the textbox
+            basket.splice(i, 1);
+            console.log(basket);
+            break;
+        }
+    }
+    if (notFound)
+        alert(`Gift ${textboxGiftObj.value} not found!`);
+}
+//sum of the all item price
+let shoppingObj = document.getElementById('shoppingList');
+//let sumObj = document.getElementById('sum');
+// sumObj.onclick = () => {
+//     console.log('Sum ...');
+//     let totalSum = basket.reduce((total, currentValue) => {
+//         total += currentValue.price;
+//         return total;
+//     }, 0);
+
+//     totalSumShow.innerHTML = `The total price for ${basket.length} items is ${totalSum}`;
+//     shoppingObj.insertAdjacentElement("afterend", totalSumShow);
+//     // alert(`Total sum: ${totalSum}`);
+// }
+
+
+let warningObj=document.getElementById("warning")
+warningObj.style.display=`none`
+let showWarning=document.getElementById("showWarning");
+
+showWarning.onclick = () => {
+    if(showWarning.innerHTML.toLocaleLowerCase()== "show"){
+        warningObj.style.display=`block`;
+        showWarning.innerHTML="Hide"
+    }
+    else{
+        warningObj.style.display=`none`;
+        showWarning.innerHTML="Show"
+    }
+}
+
 
 /* Above Shopping List Overview */
 /*
@@ -177,9 +189,3 @@ Basket:
 //3. Show message at the top of textbox instead of the alert when user enter less than 3 characters as item name and also make textbox boarder red.
 //4. When click on then Sum button then show sum of the total price and also show total item count at the bottom of the shopping list.
 //5. if you have already shown total sum and total item count while adding new item then also need to update total sum and total item count.
-
-
-
-
-
-
