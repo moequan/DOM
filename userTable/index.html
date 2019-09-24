@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Forms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand" href="#" id="user-click">Users |</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#" id="comments-click">Comments | <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="add-user-click">Add User |</a>
+                    <a class="nav-item nav-link" href="#" id="add-comments-click">Add Comment</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="table-users">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Test1</th>
+                    <td><a href="#">Test1@email.com</a></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <th scope="row">Test2</th>
+                    <td><a href="#">Test2@email.com</a></td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <th scope="row">Test3</th>
+                    <td><a href="#">Test3@email.com</a></td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="table-comments">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Test1</th>
+                    <td><a href="#">Test1@email.com</a></td>
+                    <td>bla bla</td>
+                </tr>
+                <tr>
+                    <th scope="row">Test2</th>
+                    <td><a href="#">Test2@email.com</a></td>
+                    <td>bla bla</td>
+                </tr>
+                <tr>
+                    <th scope="row">Test3</th>
+                    <td><a href="#">Test3@email.com</a></td>
+                    <td>bla bla</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="add-user">
+            <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Username</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Email</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+    </div>
+
+    <div id="add-comments">
+            <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                          </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
